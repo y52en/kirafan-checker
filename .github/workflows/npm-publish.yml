@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push: # 一度動作確認してActionsが動きそうならオフにする # オフにしないとpushの無限ループにおちいるよ。
+  schedule:
+  - cron: "*/5 * * * *"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: test=> https://qiita.com/ykhirao/items/65fee829ee0478187027
+      run: echo test
+    - uses: actions/checkout@v1
+      
+    - name: setup Node
+      uses: actions/setup-node@v1
+      with:
+          node-version: 10.x
+          registry-url: 'https://registry.npmjs.org'
+
+       
+    
+    - name: Run a multi-line script
+      run: |
+        node ./AutoDL.js
+        
+        echo Add other actions to build,
+        echo test, and deploy your project.
+        
+        echo | ls
+        
+        git config user.name ${NAME}
+        git config user.email ${EMAIL}
+        git remote set-url origin https://${NAME}:${{ secrets.PASS_GITHUB }}@github.com/${NAME}/${REPO}.git
+        echo git branch 
+        git add .
+        git commit -m "update img"
+        git push origin HEAD:main
+      env:
+        NAME: y52en
+        EMAIL: testtest
+        REPO: kirafan-checker

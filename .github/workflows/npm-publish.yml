@@ -36,7 +36,7 @@ jobs:
         git config user.email ${EMAIL}
         git remote set-url origin https://${NAME}:${{ secrets.PASS_GITHUB }}@github.com/${NAME}/${REPO}.git
         echo git branch 
-        git add . &&  git commit -m "update img" &&  git push origin HEAD:refs/heads/main || true
+        git add . &&  git commit -m "update img" &&  git push origin HEAD:refs/heads/master || true
       env:
         NAME: y52en
         EMAIL: testtest

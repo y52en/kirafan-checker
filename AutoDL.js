@@ -31,7 +31,7 @@ async function main() {
 
                 let path = `./mergedcharaicon/charaicon_${id}.png`
                 if (fs.existsSync(path) === false) {
-                    var url = `https://card-asset.kirafan.cn/mergedcharaicon/charaicon_${id}.png`;
+                    var url = `https://mergedcharaicon-asset.kirafan.cn/charaicon_${id}.png`;
 
                     var outFile = fs.createWriteStream(path);
 
